@@ -2,13 +2,14 @@
 
 import { useEffect, useRef } from 'react';
 import { Network } from 'vis-network/standalone';
-import 'vis-network/styles/vis-network.css';
 
 const GraphView = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {
+      return;
+    }
 
     const nodes = [
       { id: 1, label: '컴퓨터 네트워크' },
@@ -24,6 +25,7 @@ const GraphView = () => {
     ];
 
     const data = { nodes, edges };
+    
     const options = {
       autoResize: true,
       nodes: {
