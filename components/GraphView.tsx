@@ -3,7 +3,22 @@
 import { useEffect, useRef } from 'react';
 import { Network } from 'vis-network/standalone';
 
-const GraphView = () => {
+export interface INode {
+  id: number;
+  label: string;
+}
+
+export interface IEdge {
+  from: number;
+  to: number;
+}
+
+export interface IGraphData {
+  nodes: INode[];
+  edges: IEdge[];
+}
+
+const GraphView = ({ data }: { data: IGraphData }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -11,21 +26,6 @@ const GraphView = () => {
       return;
     }
 
-    const nodes = [
-      { id: 1, label: '컴퓨터 네트워크' },
-      { id: 2, label: 'TCP/IP' },
-      { id: 3, label: '3-way handshake' },
-      { id: 4, label: 'OSI 7계층' },
-    ];
-
-    const edges = [
-      { from: 1, to: 2 },
-      { from: 2, to: 3 },
-      { from: 1, to: 4 },
-    ];
-
-    const data = { nodes, edges };
-    
     const options = {
       autoResize: true,
       nodes: {
@@ -54,7 +54,7 @@ const GraphView = () => {
     };
 
     new Network(containerRef.current, data, options);
-  }, []);
+  }, [data]);
 
   return (
     <div
