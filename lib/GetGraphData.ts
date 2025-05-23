@@ -32,12 +32,12 @@ export async function getGraphData(keyword: string): Promise<IGraphData> {
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
       "X-Title": "keyword-mapper",
     },
     body: JSON.stringify({
-      model: "google/gemma-3n-e4b-it:free",
+      model: "deepseek/deepseek-chat-v3-0324:free",
       messages: [
         {
           role: "user",
